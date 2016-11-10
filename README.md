@@ -1,3 +1,17 @@
+# elktalk
+David's ELK Stack Data Visualization Talk
+
+
+# Docker Stuff
+- Docker container: [documentation](https://elk-docker.readthedocs.io/)
+
+- Bash terminal: `dk exec -it <container_id> /bin/bash`
+
+# ELK Stack
+## Logstash
+- Documentation [here](https://www.elastic.co/guide/en/logstash/2.4/index.html)
+
+
 # Elasticsearch, Logstash, Kibana (ELK) Docker image
 
 [![](https://badge.imagelayers.io/sebp/elk:latest.svg)](https://imagelayers.io/?images=sebp/elk:latest 'Get your own badge on imagelayers.io')
