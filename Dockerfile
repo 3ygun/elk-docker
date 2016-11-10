@@ -149,3 +149,26 @@ EXPOSE 5601 9200 9300 5000 5044
 VOLUME /var/lib/elasticsearch
 
 CMD [ "/usr/local/bin/start.sh" ]
+
+# David
+FROM sebp/elk
+
+WORKDIR ${KIBANA_HOME}
+RUN gosu kibana bin/kibana plugin -i elastic/sense
+
+WORKDIR ${LOGSTASH_HOME}
+RUN gosu logstash bin/logstash-plugin install logstash-filter-prune
+
+# Logstash files
+ADD ./logstash/basic-input.conf /etc/logstash/conf.d/basic-input.conf
+
+ADD ./logstash/esidata.csv /etc/logstash/conf.d/esidata.csv
+ADD ./logstash/esidata_template.json /etc/logstash/conf.d/esidata_template.json
+ADD ./logstash/basic-csv.conf /etc/logstash/conf.d/basic-csv.conf
+
+# ADD ./logstash/twitter_template.json /etc/logstash/conf.d/twitter_template.json
+# ADD ./logstash/twitter.conf /etc/logstash/conf.d/twitter.conf
+
+# ADD ./logstash/datafest_template.json /etc/logstash/conf.d/datafest_template.json
+# ADD ./logstash/data/adwords.csv  /etc/logstash/conf.d/adwords.csv
+# ADD ./logstash/datafest.conf /etc/logstash/conf.d/datafest.conf
